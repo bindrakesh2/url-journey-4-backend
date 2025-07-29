@@ -1,26 +1,8 @@
-# This tells Nixpacks what system packages to install
-[phases.install]
-pkgs = [
-    "pkgs.chromium",
-    "pkgs.stdenv.cc.cc.lib",
-    "pkgs.alsa-lib",
-    "pkgs.at-spi2-atk",
-    "pkgs.cups",
-    "pkgs.dbus",
-    "pkgs.gtk3",
-    "pkgs.libdrm",
-    "pkgs.libxkbcommon",
-    "pkgs.libX11",
-    "pkgs.libXcomposite",
-    "pkgs.libXdamage",
-    "pkgs.libXext",
-    "pkgs.libXfixes",
-    "pkgs.libXrandr",
-    "pkgs.mesa",
-    "pkgs.nss",
-    "pkgs.pango"
-]
-
-# This tells Nixpacks what commands to run to build your app
+# This tells Nixpacks what commands to run to build the app.
+# The order is important.
 [phases.build]
-cmds = ["pip install -r requirements.txt", "playwright install chromium"]
+cmds = [
+    "pip install -r requirements.txt",
+    "playwright install-deps", 
+    "playwright install chromium"
+]
